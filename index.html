@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>VAT Validator</title>
+  </head>
+  <body>
+  
+    <div style="margin: 10px 0px;"  id="msg"></div>
+
+    <input id="vat" value="BE 0821.420.051" /><button id="checkbutton">Check me !</button>
+   
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="vatvalidator.js"></script>
+    <script>
+
+        var validator = new VatValidator();
+        $(window).ready(function() {
+            $("#checkbutton").on('click', function(){ $("#msg").html("Submit number. Please wait..."); validator.validate($("#vat").val(),callback);  });
+        });
+
+       function callback(valid) {
+            $("#msg").html($("#vat").val() + " is "+(valid ? "" : " NOT ")+" valid"); 
+        }
+
+    </script>
+
+  </body>
+</html>
